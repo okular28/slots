@@ -11,15 +11,17 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  /*VARIABLES FOR SLOT ANIMATION*/
+  --animationTime: 1s;
+  --animationIterations: 5;
+  --animationDelay: calc(var(--animationTime) / 4);
+  --totalAnimationTime: calc(var(--animationIterations)*var(--animationTime));
+  --singleCellStep: calc(var(--animationTime)/4);
+
+  /*VARIABLES FOR CELLS*/
+  --cellHeight: 50px;
+  --cellWidth: 100px;
 }
 
 body {
@@ -42,27 +44,6 @@ h1 {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -76,10 +57,6 @@ button {
 }
 button:hover {
   border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -95,72 +72,105 @@ button:focus-visible {
   }
 }
 
-div {
-  width: 60px;
-  height: 20px;
+.machineContainer{
+  display: flex;
 }
-.wrapper{
-  position: relative;
+
+/*COLORS FOR "DEBUGGING"*/
+.cell.blue{
+  background-color: blue;
 }
-.whooper{
-  z-index: 15;
-  background-color: green;
+.cell.red{
+  background-color: darkred;
 }
-.div1 {
-  animation: rotate 4s linear 0s 5, koniec 3s linear 20s 1 forwards;
-  background-color: purple;
+.cell.green{
+  background-color: darkgoldenrod;
+}
+.cell.white{
+  background-color: white;
+}
+.cell.teal{
+  background-color: teal;
+}
+.cell.black{
+  background-color: black;
+}
+.cell.darkgreen{
+  background-color: darkcyan;
+}
+.cell.pink{
+  background-color: deeppink;
+}
+
+.cell, .machineBorder {
+  width: var(--cellWidth);
+  height: var(--cellHeight);
+}
+
+.cell{
   position: absolute;
   z-index: -1;
 }
-.div2 {
-  animation: rotate 4s linear 1s 5, koniec1 2s linear 21s 1 forwards;
-  background-color: yellow;
-  position: absolute;
-  z-index: -2;
-}
-.div3 {
-  animation: rotate 4s linear 2s 5, koniec2 1s linear 22s 1 forwards;
-  background-color: red;
-  position: absolute;
-  z-index: -3;
-}
-.div4 {
-  animation: rotate 4s linear 3s 5;
-  background-color: orange;
-  position: absolute;
-  z-index: -4;
+
+.wrapper{
+  position: relative;
 }
 
-@keyframes rotate {
+.filler{
+  height: calc(3*var(--cellHeight));
+}
+
+.machineBorder{
+  z-index: 15;
+  background-color: #242424;
+}
+/*ANIMATION CLASSES FOR USE IN animationStartStop FUNCTION*/
+.wrapper.animationClass div:first-child {
+  animation: spinningAnimation var(--animationTime) linear 0s var(--animationIterations), spinEndingAnimation1 calc((var(--animationTime)/4)*3) linear var(--totalAnimationTime) 1 forwards;
+}
+
+.wrapper.animationClass div:nth-child(2) {
+  animation: spinningAnimation var(--animationTime) linear var(--animationDelay) var(--animationIterations), spinEndingAnimation2 calc((var(--animationTime)/4)*2) linear calc(var(--totalAnimationTime) + var(--singleCellStep)) 1 forwards;
+}
+
+.wrapper.animationClass div:nth-child(3) {
+  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*2) var(--animationIterations), spinEndingAnimation3 calc(var(--animationTime)/4) linear calc(var(--totalAnimationTime) + var(--singleCellStep)*2) 1 forwards;
+}
+
+.wrapper.animationClass div:nth-child(4) {
+  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*3) var(--animationIterations);
+}
+
+@keyframes spinningAnimation {
   0% {
     transform: translate(0, 0px);
   }
   100% {
-    transform: translate(0, 80px);
+    transform: translate(0, calc(var(--cellHeight)*4));
   }
 }
 
-@keyframes koniec {
+@keyframes spinEndingAnimation1 {
   0% {
     transform: translate(0, 0px);
   }
   100% {
-    transform: translate(0, 60px);
+    transform: translate(0, calc(var(--cellHeight)*3));
   }
 }
-@keyframes koniec1 {
+@keyframes spinEndingAnimation2 {
   0% {
     transform: translate(0, 0px);
   }
   100% {
-    transform: translate(0, 40px);
+    transform: translate(0, calc(var(--cellHeight)*2));
   }
 }
-@keyframes koniec2 {
+@keyframes spinEndingAnimation3 {
   0% {
     transform: translate(0, 0px);
   }
   100% {
-    transform: translate(0, 20px);
+    transform: translate(0, var(--cellHeight));
   }
 }

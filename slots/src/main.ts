@@ -1,23 +1,63 @@
 import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { animationStartStop } from './animationState.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
+  <div class="machineContainer" id="machineContainer">
     <div class="wrapper">
-        <div></div>
-        <div class="div1"></div>
-        <div class="div2"></div>
-        <div class="div3"></div>
-        <div class="div4"></div>
-        <div class="whooper"></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div class="whooper"></div>
+        <div class="cell red"></div>
+        <div class="cell green"></div>
+        <div class="cell white"></div>
+        <div class="cell darkgreen"></div>
+        <div class="machineBorder
+        "></div>
+        <div class="filler"></div>
+        <div class="machineBorder
+        "></div>
+    </div>
+    <div class="wrapper">
+        <div class="cell blue"></div>
+        <div class="cell red"></div>
+        <div class="cell green"></div>
+        <div class="cell white"></div>
+        <div class="machineBorder
+        "></div>
+        <div class="filler"></div>
+        <div class="machineBorder
+        "></div>
+    </div>
+    <div class="wrapper">
+        <div class="cell teal"></div>
+        <div class="cell pink"></div>
+        <div class="cell gray"></div>
+        <div class="cell black"></div>
+        <div class="machineBorder
+        "></div>
+        <div class="filler"></div>
+        <div class="machineBorder
+        "></div>
+    </div>
+    <div class="wrapper">
+        <div class="cell white"></div>
+        <div class="cell green"></div>
+        <div class="cell pink"></div>
+        <div class="cell darkgreen"></div>
+        <div class="machineBorder"></div>
+        <div class="filler"></div> 
+        <div class="machineBorder
+        "></div>
+    </div>
+    <div class="wrapper">
+        <div class="cell blue"></div>
+        <div class="cell red"></div>
+        <div class="cell green"></div>
+        <div class="cell white"></div>
+        <div class="machineBorder
+        "></div>
+        <div class="filler"></div>
+        <div class="machineBorder
+        "></div>
     </div>
   </div>
+  <button id="animationButton">Spin</button>
 `
-
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+animationStartStop();
