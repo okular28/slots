@@ -1,5 +1,5 @@
 import { shuffle } from './arrayShuffle.ts'
-export function slotDrawer() {
+export function slotDrawer():void {
     /*
     * Symbol - Price - Value
     * Diamond - 25k - 2
@@ -13,11 +13,11 @@ export function slotDrawer() {
     * Amethyst - 0.1k - 512
     */
     const symbols: string[] = ['Rubin', 'Emerald','Alexandrite','Diamond','Opal','Sapphire','Tanzanite','Topaz','Amethyst'];
-    let wrapperList = document.querySelectorAll(".wrapper") as NodeListOf<HTMLElement>;
-    wrapperList.forEach((wrapper) => {
+    let wrapperList:NodeListOf<HTMLElement> = document.querySelectorAll(".wrapper") as NodeListOf<HTMLElement>;
+    wrapperList.forEach((wrapper:HTMLElement):void => {
         let shuffledArray:string[] = shuffle(symbols);
-        let cellList = wrapper.querySelectorAll(".cell") as NodeListOf<HTMLElement>;
-        cellList.forEach((cell, index) =>{
+        let cellList:NodeListOf<HTMLElement> = wrapper.querySelectorAll(".cell") as NodeListOf<HTMLElement>;
+        cellList.forEach((cell:HTMLElement, index:number):void =>{
             cell.innerHTML = shuffledArray[index];
         }
         )
