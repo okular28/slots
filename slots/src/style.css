@@ -13,8 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
 
   /*VARIABLES FOR SLOT ANIMATION*/
-  --animationTime: 1s;
-  --animationIterations: 2;
+  --animationTime: 900ms;
+  --animationIterations: infinite;
   --animationDelay: calc(var(--animationTime) / 9);
   --totalAnimationTime: calc(var(--animationIterations)*var(--animationTime));
   --singleCellStep: calc(var(--animationTime)/9);
@@ -113,7 +113,7 @@ button:hover {
 .machineBorder{
   z-index: 15;
   background-color: #242424;
-  /*opacity: 50%;*/
+  opacity: 50%;
   height: calc(3*var(--cellHeight));
 }
 
@@ -122,16 +122,25 @@ button:hover {
 }
 
 /*ANIMATION CLASSES FOR USE IN animationStartStop FUNCTION*/
+/*.wrapper.animationClass div:nth-child(n+1) {*/
+/*  --stop-position: calc(var(--cellHeight) * (9 - n));*/
+/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*(n - 1)) var(--animationIterations), spinEndingAnimation calc((var(--animationTime) / 9) * (9 - n)) linear calc(var(--totalAnimationTime) + var(--singleCellStep) * (n - 1)) 1 forwards;*/
+/*}*/
+
+.wrapper.pauseClass div{
+  animation-play-state: paused !important;
+}
+
 .wrapper.animationClass div:first-child {
-  animation: spinningAnimation var(--animationTime) linear 0s var(--animationIterations), spinEndingAnimation1 calc((var(--animationTime)/9)*5) linear calc(var(--totalAnimationTime)) 1 forwards;
+  animation: spinningAnimation var(--animationTime) linear 0s var(--animationIterations);
 }
 
 .wrapper.animationClass div:nth-child(2) {
-  animation: spinningAnimation var(--animationTime) linear var(--animationDelay) var(--animationIterations), spinEndingAnimation2 calc((var(--animationTime)/9)*4) linear calc(var(--totalAnimationTime) + var(--singleCellStep)) 1 forwards;
+  animation: spinningAnimation var(--animationTime) linear var(--animationDelay) var(--animationIterations);
 }
 
 .wrapper.animationClass div:nth-child(3) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*2) var(--animationIterations), spinEndingAnimation3 calc((var(--animationTime)/9)*3) linear calc(var(--totalAnimationTime) + var(--singleCellStep)*2) 1 forwards;
+  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*2) var(--animationIterations);
 }
 .wrapper.animationClass div:nth-child(4) {
   animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*3) var(--animationIterations);
@@ -161,27 +170,11 @@ button:hover {
   }
 }
 
-@keyframes spinEndingAnimation1 {
-  0% {
-    transform: translate(0, 0px);
-  }
-  100% {
-    transform: translate(0, calc(var(--cellHeight)*5));
-  }
-}
-@keyframes spinEndingAnimation2 {
-  0% {
-    transform: translate(0, 0px);
-  }
-  100% {
-    transform: translate(0, calc(var(--cellHeight)*4));
-  }
-}
-@keyframes spinEndingAnimation3 {
-  0% {
-    transform: translate(0, 0px);
-  }
-  100% {
-    transform: translate(0, calc(var(--cellHeight)*3));
-  }
-}
+/*@keyframes spinEndingAnimation {*/
+/*  0% {*/
+/*    transform: translate(0, 0px);*/
+/*  }*/
+/*  100% {*/
+/*    transform: translate(0, var(--stop-position));*/
+/*  }*/
+/*}*/

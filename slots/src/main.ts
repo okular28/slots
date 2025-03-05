@@ -1,5 +1,5 @@
 import './style.css'
-import { animationStartStop } from './animationState.ts'
+import { animationStart } from './animationState.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="machineContainer" id="machineContainer">
@@ -77,4 +77,4 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <button id="animationButton">Spin</button>
 `
 
-animationStartStop();
+animationStart();
