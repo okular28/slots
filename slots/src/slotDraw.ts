@@ -13,14 +13,12 @@ export function slotDrawer():void {
     * Amethyst - 0.1k - 512
     */
     const symbols: string[] = ['Rubin', 'Emerald','Alexandrite','Diamond','Opal','Sapphire','Tanzanite','Topaz','Amethyst'];
-    const wrapperList:NodeListOf<HTMLElement> = document.querySelectorAll(".wrapper") as NodeListOf<HTMLElement>;
-    wrapperList.forEach((wrapper:HTMLElement):void => {
+    const reelList:NodeListOf<HTMLElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
+    reelList.forEach((reel:HTMLElement):void => {
         const shuffledArray:string[] = shuffle(symbols);
-        const cellList:NodeListOf<HTMLElement> = wrapper.querySelectorAll(".cell") as NodeListOf<HTMLElement>;
-        cellList.forEach((cell:HTMLElement, index:number):void =>{
-            cell.innerHTML = shuffledArray[index];
-        }
-        )
-        console.log(cellList);
+        const rowList:NodeListOf<HTMLElement> = reel.querySelectorAll(".row") as NodeListOf<HTMLElement>;
+        rowList.forEach((row:HTMLElement, index:number):void =>{
+            row.textContent = shuffledArray[index];
+        })
         });
 }

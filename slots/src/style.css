@@ -17,11 +17,11 @@
   --animationIterations: infinite;
   --animationDelay: calc(var(--animationTime) / 9);
   --totalAnimationTime: calc(var(--animationIterations)*var(--animationTime));
-  --singleCellStep: calc(var(--animationTime)/9);
+  --singlerowStep: calc(var(--animationTime)/9);
 
-  /*VARIABLES FOR CELLS*/
-  --cellHeight: 100px;
-  --cellWidth: 100px;
+  /*VARIABLES FOR rowS*/
+  --rowHeight: 100px;
+  --rowWidth: 100px;
 }
 
 *{
@@ -80,9 +80,9 @@ button:hover {
   display: flex;
 }
 
-.cell, .machineBorder {
-  width: var(--cellWidth);
-  height: var(--cellHeight);
+.row, .machineBorder {
+  width: var(--rowWidth);
+  height: var(--rowHeight);
   color: #1a1a1a;
 }
 
@@ -90,7 +90,7 @@ button:hover {
   z-index: 40;
 }
 
-.cell{
+.row{
   position: absolute;
   z-index: -1;
   display: flex;
@@ -102,73 +102,73 @@ button:hover {
   border-collapse: collapse;
 }
 
-.wrapper{
+.reel{
   position: relative;
 }
 
 .filler{
-  height: calc(3*var(--cellHeight));
+  height: calc(3*var(--rowHeight));
 }
 
 .machineBorder{
   z-index: 15;
   background-color: #242424;
   opacity: 50%;
-  height: calc(3*var(--cellHeight));
+  height: calc(3*var(--rowHeight));
 }
 
 .machineBorder:last-child {
-  height: calc(4*var(--cellHeight));
+  height: calc(4*var(--rowHeight));
 }
 
 /*ANIMATION CLASSES FOR USE IN animationStartStop FUNCTION*/
-/*.wrapper.animationClass div:nth-child(n+1) {*/
-/*  --stop-position: calc(var(--cellHeight) * (9 - n));*/
-/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*(n - 1)) var(--animationIterations), spinEndingAnimation calc((var(--animationTime) / 9) * (9 - n)) linear calc(var(--totalAnimationTime) + var(--singleCellStep) * (n - 1)) 1 forwards;*/
+/*.reel.animationClass div:nth-child(n+1) {*/
+/*  --stop-position: calc(var(--rowHeight) * (9 - n));*/
+/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*(n - 1)) var(--animationIterations), spinEndingAnimation calc((var(--animationTime) / 9) * (9 - n)) linear calc(var(--totalAnimationTime) + var(--singlerowStep) * (n - 1)) 1 forwards;*/
 /*}*/
 
-.wrapper.pauseClass div{
-  animation-play-state: paused !important;
-}
+/*.reel.pauseClass div{*/
+/*  animation-play-state: paused !important;*/
+/*}*/
 
-.wrapper.animationClass div:first-child {
-  animation: spinningAnimation var(--animationTime) linear 0s var(--animationIterations);
-}
+/*.reel.animationClass div:first-child {*/
+/*  animation: spinningAnimation var(--animationTime) linear 0s var(--animationIterations);*/
+/*}*/
 
-.wrapper.animationClass div:nth-child(2) {
-  animation: spinningAnimation var(--animationTime) linear var(--animationDelay) var(--animationIterations);
-}
+/*.reel.animationClass div:nth-child(2) {*/
+/*  animation: spinningAnimation var(--animationTime) linear var(--animationDelay) var(--animationIterations);*/
+/*}*/
 
-.wrapper.animationClass div:nth-child(3) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*2) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(4) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*3) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(5) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*4) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(6) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*5) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(7) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*6) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(8) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*7) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(9) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*8) var(--animationIterations);
-}
+/*.reel.animationClass div:nth-child(3) {*/
+/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*2) var(--animationIterations);*/
+/*}*/
+/*.reel.animationClass div:nth-child(4) {*/
+/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*3) var(--animationIterations);*/
+/*}*/
+/*.reel.animationClass div:nth-child(5) {*/
+/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*4) var(--animationIterations);*/
+/*}*/
+/*.reel.animationClass div:nth-child(6) {*/
+/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*5) var(--animationIterations);*/
+/*}*/
+/*.reel.animationClass div:nth-child(7) {*/
+/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*6) var(--animationIterations);*/
+/*}*/
+/*.reel.animationClass div:nth-child(8) {*/
+/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*7) var(--animationIterations);*/
+/*}*/
+/*.reel.animationClass div:nth-child(9) {*/
+/*  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*8) var(--animationIterations);*/
+/*}*/
 
-@keyframes spinningAnimation {
-  0% {
-    transform: translate(0, 0px);
-  }
-  100% {
-    transform: translate(0, calc(var(--cellHeight)*9));
-  }
-}
+/*@keyframes spinningAnimation {*/
+/*  0% {*/
+/*    transform: translate(0, 0px);*/
+/*  }*/
+/*  100% {*/
+/*    transform: translate(0, calc(var(--rowHeight)*9));*/
+/*  }*/
+/*}*/
 
 /*@keyframes spinEndingAnimation {*/
 /*  0% {*/

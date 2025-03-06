@@ -1,24 +1,38 @@
 import { slotDrawer } from './slotDraw.ts'
 
 export function animationStart():void {
-    const wrapperList:NodeListOf<HTMLElement> = document.querySelectorAll(".wrapper") as NodeListOf<HTMLElement>;
+    // const reelList:NodeListOf<HTMLElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
+    const reelList:NodeListOf<HTMLElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
     const element:HTMLButtonElement = document.getElementById("animationButton") as HTMLButtonElement;
+    const pauseButton = document.getElementById("pauseButton");
     element.addEventListener('click', ():void => {
         slotDrawer();
-        wrapperList.forEach((wrapper:HTMLElement, index:number):void => {
-            setTimeout(():void => {
-                animationStop(wrapper, index);
-                wrapper.classList.remove( "pauseClass");
-                wrapper.offsetWidth;
-                wrapper.classList.add("animationClass");
-            }, 0);
+        reelList.forEach((reel:HTMLElement, index:number):void => {
+        const rowList:NodeListOf<HTMLElement> = reel.querySelectorAll(".row") as NodeListOf<HTMLElement>;
+            rowList.forEach((row:HTMLElement, index:number):void => {
+                const anim = row.animate(
+                    [
+                        { top: "0px" },
+                        { top: `900px` }
+                    ],
+                    {
+                        delay: index*100,
+                        duration: 900,
+                        iterations: Infinity,
+                        easing: "linear",
+                    }
+                );
+                // pauseButton?.addEventListener("click", ():void => {
+                setTimeout(():void => {
+                    anim.pause();
+                }, 2700);
+                // });
+                pauseButton?.addEventListener("click", ():void => {
+                setTimeout(():void => {
+                    anim.pause();
+                }, 2700);
+                });
+            });
         });
     });
-}
-export function animationStop(wrapper, index):void {
-        setTimeout(():void => {
-            wrapper.classList.remove("pauseClass");
-            void wrapper.offsetWidth;
-            wrapper.classList.add("pauseClass");
-        },  2700);
 }
