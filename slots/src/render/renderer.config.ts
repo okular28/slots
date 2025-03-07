@@ -1,8 +1,21 @@
-export const RendererConfig = {
+export const RendererConfig: {
+    symbolAmount: number;
+    animationTime: number;
+    iterationCount: number;
+    symbolHeight: number;
+    reelIndex: number;
+    iterationTime: number;
+    reelAmount: number;
+    reelSet: any[];
+    reelLength: number;
+    symbolConfig: object[]} = {
     reelAmount: 5,
     symbolAmount: 9,
+    iterationCount: 5,
     reelLength: 50,
     symbolHeight: 180,
+    iterationTime: 280,
+    animationTime: 5*280+280*0.5,
     reelIndex: 0,
     symbolConfig: [
         {
@@ -56,6 +69,6 @@ export const RendererConfig = {
     */
 }
 
-export const RendererObject = {
-
+export const RendererObject:{button:HTMLButtonElement} = {
+    button: document.getElementById("animationButton") as HTMLButtonElement
 }
