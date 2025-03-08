@@ -13,19 +13,20 @@
   -moz-osx-font-smoothing: grayscale;
 
   /*VARIABLES FOR SLOT ANIMATION*/
-  --animationTime: 1s;
-  --animationIterations: 2;
+  --animationTime: 900ms;
+  --animationIterations: infinite;
   --animationDelay: calc(var(--animationTime) / 9);
   --totalAnimationTime: calc(var(--animationIterations)*var(--animationTime));
-  --singleCellStep: calc(var(--animationTime)/9);
+  --singlerowStep: calc(var(--animationTime)/9);
 
-  /*VARIABLES FOR CELLS*/
-  --cellHeight: 100px;
-  --cellWidth: 100px;
+  /*VARIABLES FOR ROWS*/
+  --rowHeight: 100px;
+  --rowWidth: 100px;
 }
 
 *{
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 body {
@@ -78,11 +79,22 @@ button:hover {
 
 .machineContainer{
   display: flex;
+  position: absolute;
+  z-index: -15;
 }
 
-.cell, .machineBorder {
-  width: var(--cellWidth);
-  height: var(--cellHeight);
+.reel{
+  width: var(--rowWidth);
+  height: 900px;
+}
+
+.row{
+  width: var(--rowWidth);
+  height: var(--rowHeight);
+}
+.machineBorder {
+  width: calc(5*var(--rowWidth));
+  height: calc(3*var(--rowHeight));
   color: #1a1a1a;
 }
 
@@ -90,8 +102,8 @@ button:hover {
   z-index: 40;
 }
 
-.cell{
-  position: absolute;
+.row{
+  /*position: absolute;*/
   z-index: -1;
   display: flex;
   align-items: center;
@@ -102,86 +114,22 @@ button:hover {
   border-collapse: collapse;
 }
 
-.wrapper{
+.reel{
   position: relative;
 }
 
 .filler{
-  height: calc(3*var(--cellHeight));
+  width: calc(5*var(--rowWidth));
+  height: calc(3*var(--rowHeight));
 }
 
 .machineBorder{
   z-index: 15;
   background-color: #242424;
   /*opacity: 50%;*/
-  height: calc(3*var(--cellHeight));
+  height: calc(3*var(--rowHeight));
 }
 
 .machineBorder:last-child {
-  height: calc(4*var(--cellHeight));
-}
-
-/*ANIMATION CLASSES FOR USE IN animationStartStop FUNCTION*/
-.wrapper.animationClass div:first-child {
-  animation: spinningAnimation var(--animationTime) linear 0s var(--animationIterations), spinEndingAnimation1 calc((var(--animationTime)/9)*5) linear calc(var(--totalAnimationTime)) 1 forwards;
-}
-
-.wrapper.animationClass div:nth-child(2) {
-  animation: spinningAnimation var(--animationTime) linear var(--animationDelay) var(--animationIterations), spinEndingAnimation2 calc((var(--animationTime)/9)*4) linear calc(var(--totalAnimationTime) + var(--singleCellStep)) 1 forwards;
-}
-
-.wrapper.animationClass div:nth-child(3) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*2) var(--animationIterations), spinEndingAnimation3 calc((var(--animationTime)/9)*3) linear calc(var(--totalAnimationTime) + var(--singleCellStep)*2) 1 forwards;
-}
-.wrapper.animationClass div:nth-child(4) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*3) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(5) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*4) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(6) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*5) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(7) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*6) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(8) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*7) var(--animationIterations);
-}
-.wrapper.animationClass div:nth-child(9) {
-  animation: spinningAnimation var(--animationTime) linear calc(var(--animationDelay)*8) var(--animationIterations);
-}
-
-@keyframes spinningAnimation {
-  0% {
-    transform: translate(0, 0px);
-  }
-  100% {
-    transform: translate(0, calc(var(--cellHeight)*9));
-  }
-}
-
-@keyframes spinEndingAnimation1 {
-  0% {
-    transform: translate(0, 0px);
-  }
-  100% {
-    transform: translate(0, calc(var(--cellHeight)*5));
-  }
-}
-@keyframes spinEndingAnimation2 {
-  0% {
-    transform: translate(0, 0px);
-  }
-  100% {
-    transform: translate(0, calc(var(--cellHeight)*4));
-  }
-}
-@keyframes spinEndingAnimation3 {
-  0% {
-    transform: translate(0, 0px);
-  }
-  100% {
-    transform: translate(0, calc(var(--cellHeight)*3));
-  }
+  height: calc(4*var(--rowHeight));
 }

@@ -1,80 +1,9 @@
-import './style.css'
-import { animationStartStop } from './animationState.ts'
+// import './style.css'
+import { animationStart } from './animations/animationState.ts'
+import {renderReels, renderReelSteps} from './render/renderer.ts';
+import {drawReels} from "./slot/reelSetDraw.ts";
+import {slotDrawer} from "./slot/slotDraw.ts";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div class="machineContainer" id="machineContainer">
-    <div class="wrapper">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="machineBorder"></div>
-        <div class="filler"></div>
-        <div class="machineBorder"></div>
-    </div>
-    <div class="wrapper">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="machineBorder"></div>
-        <div class="filler"></div>
-        <div class="machineBorder"></div>
-    </div>
-    <div class="wrapper">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="machineBorder"></div>
-        <div class="filler"></div>
-        <div class="machineBorder"></div>
-    </div>
-    <div class="wrapper">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="machineBorder"></div>
-        <div class="filler"></div> 
-        <div class="machineBorder"></div>
-    </div>
-    <div class="wrapper">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="machineBorder"></div>
-        <div class="filler"></div>
-        <div class="machineBorder"></div>
-    </div>
-  </div>
-  <button id="animationButton">Spin</button>
-`
-
-animationStartStop();
+renderReels();
+drawReels();
+slotDrawer();
