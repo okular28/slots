@@ -4,6 +4,7 @@ import {combinationVariationDrawer} from "./slotCombinations.ts";
 
 
 export function  insertLastCombination() {
+    RendererConfig.reelSet = RendererConfig.initialReelSet.map(inner => [...inner]);
     // await drawCombination();
         const insertIndex:number = RendererConfig.reelIndex+RendererConfig.startIndex;
     RendererConfig.reelSet.forEach((reel, index:number):void=>{
@@ -14,6 +15,5 @@ export function  insertLastCombination() {
         // if(RendererConfig.reelSet == RendererConfig.initialReelSet){
         //     console.log(true);
         // }
-        RendererConfig.reelSet = RendererConfig.initialReelSet;
         RendererConfig.winningCombination = [];
     }
