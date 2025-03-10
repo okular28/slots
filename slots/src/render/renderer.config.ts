@@ -5,6 +5,7 @@ export const RendererConfig: {
     symbolHeight: number;
     reelIndex: number;
     iterationTime: number;
+    winningCombination: number[][];
     reelAmount: number;
     reelSet: any[];
     reelLength: number;
@@ -16,6 +17,7 @@ export const RendererConfig: {
     symbolHeight: 180,
     iterationTime: 280,
     animationTime: 5*280+280*0.5,
+    winningCombination: [],
     reelIndex: 0,
     symbolConfig: [
         {

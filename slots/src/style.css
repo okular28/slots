@@ -29,6 +29,42 @@
   overflow: hidden;
 }
 
+.Diamond{
+  background-image: url("./images/diamond.png")!important;
+}
+
+.Rubin{
+  background-image: url("./images/rubin.png")!important;
+}
+
+.Emerald{
+  background-image: url("./images/emerald.png")!important;
+}
+
+.Alexandrite{
+  background-image: url("./images/alexandrite.png")!important;
+}
+
+.Opal{
+  background-image: url("./images/opal.png")!important;
+}
+
+.Sapphire{
+  background-image: url("./images/sapphire.png")!important;
+}
+
+.Tanzanite{
+  background-image: url("./images/tanzanite.png")!important
+}
+
+.Topaz{
+  background-image: url("./images/topaz.png")!important;
+}
+
+.Amethyst{
+  background-image: url("./images/amethyst.png")!important;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -110,8 +146,11 @@ button:hover {
   justify-content: center;
   color: #f2a4f0;
   border: 7px groove #f2a4f0;
-  background: #cefff5;
+  background-color: #cefff5;
   border-collapse: collapse;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 
 .reel{

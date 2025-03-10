@@ -4,5 +4,4 @@ export function buttonBlock (button, time:number):void{
     setTimeout(():void => {
         button.disabled = !button.disabled;
     },  time);
-    console.log(button.disabled);
 }

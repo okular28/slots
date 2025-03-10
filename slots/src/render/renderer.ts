@@ -25,7 +25,10 @@ export const renderReelSteps = (reel, index):void => {
         for (let j: number = 0; j < config.symbolAmount/3; j++) {
             const row: HTMLDivElement = document.createElement('div');
             row.classList.add('row');
-            row.textContent = config.reelSet[index][config.reelIndex+reelIndexAdder];
+            const symbolObject:object = config.symbolConfig.find((item:object):boolean => item.id === config.reelSet[index][config.reelIndex+reelIndexAdder]);
+            if (symbolObject && !row.classList.contains(symbolObject.name)) {
+                row.classList.add(symbolObject.name);
+            }
             reel.removeChild(reel.lastChild);
             reel.insertBefore(row, reel.firstChild);
             reelIndexAdder++;

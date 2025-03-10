@@ -4,6 +4,7 @@ import  { RendererConfig } from "../render/renderer.config.ts";
 import  { RendererObject } from "../render/renderer.config.ts";
 import {buttonBlock} from "./buttonBlock.ts";
 import {insertLastCombination} from "../slot/lastCombinationInserter.ts";
+import {slotCombinations} from "../slot/slotCombinations.ts";
 
 
 const element:HTMLButtonElement = RendererObject.button;
@@ -15,6 +16,7 @@ export function animationStart():void {
 
 export function onSpinButtonClick():void {
     buttonBlock(element, RendererConfig.animationTime);
+    slotCombinations();
     insertLastCombination();
     reelList.forEach((reel:HTMLElement, index:number):void => {
         let currentIteration:number = 1;

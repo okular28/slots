@@ -18,7 +18,7 @@ export function slotDrawer():void {
         const shuffledArray:string[] = shuffle(symbols);
         const rowList:NodeListOf<HTMLElement> = reel.querySelectorAll(".row") as NodeListOf<HTMLElement>;
         rowList.forEach((row:HTMLElement, index:number):void =>{
-            row.textContent = shuffledArray[index];
+            row.classList.add(shuffledArray[index]);
         })
         });
 }
