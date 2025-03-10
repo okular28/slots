@@ -51,12 +51,21 @@ const combinationsConfig:object[] = [
     }
 ]
 export function slotCombinations():void{
-    drawCombination(combinationVariationDrawer());
+    const combination = combinationVariationDrawer();
+    let placement;
+    if(combination != null){
+        placement = combinationPlacement(combination);
+    }
+    drawCombination(combination, placement);
 }
 
-export async function  drawCombination(combinationIndex):Promise<void>{
-    return new Promise<void>((resolve):void => {
-        setTimeout(():void => {
+export async function  drawCombination(combinationIndex, positionArray):Promise<void>{
+    // return new Promise<void>((resolve):void => {
+        // setTimeout(():void => {
+            // console.log(positionArray);
+            // if(positionArray!=null){
+            //     console.log(positionArray[0],positionArray[1]);
+            // }
     const winningSymbol:number = Math.floor(Math.random() * RendererConfig.symbolAmount);
     for (let currentReel:number = 0; currentReel< RendererConfig.reelAmount; currentReel++){
         let ids:number[] = RendererConfig
@@ -76,27 +85,37 @@ export async function  drawCombination(combinationIndex):Promise<void>{
         }
         RendererConfig.winningCombination.push(singleReelSymbols);
     }
-            resolve();
-        }, 20);
-});
+        //     resolve();
+        // }, 20);
+// });
 }
-
 export function combinationVariationDrawer():number|null{
-    const result:number = Math.floor(Math.random() * 101);
+    const result:number = Math.floor(Math.random() * 201);
     switch(true) {
-        case (result==95):
+        case (result>=195):
             return 5;
-        case (result>=80):
+        case (result>=180):
             return 4;
-        case (result>=70):
+        case (result>=170):
             return 3;
-        case (result>=55):
+        case (result>=155):
             return 2;
-        case (result>=40):
+        case (result>=140):
             return 1;
-        case (result>=20):
+        case (result>=120):
             return 0;
         default:
+            console.log('none');
             return null;
     }
+}
+
+export function combinationPlacement(combinationId){
+    const combination = combinationsConfig[combinationId];
+    console.log(combination);
+    console.log(Object.values(combination)[1], Object.values(combination)[2])
+    const posX:number = Math.floor(Math.random() * (Object.values(combination)[1]+1));
+    const posY:number = Math.floor(Math.random() * (Object.values(combination)[2]+1));
+    console.log(posX, posY);
+    return [posX, posY];
 }
