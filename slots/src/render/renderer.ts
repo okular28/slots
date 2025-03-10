@@ -36,6 +36,8 @@ export const renderReelSteps = (reel, index):void => {
         if(indexCounter%5==0){
             config.reelIndex=config.reelIndex+3;
         }
-    } else config.reelIndex = 0;
+    } else {
+        config.reelIndex = 0;
+    }
 }
 //3,4,5, 18,19,20

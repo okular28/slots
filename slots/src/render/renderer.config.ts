@@ -7,7 +7,9 @@ export const RendererConfig: {
     iterationTime: number;
     winningCombination: number[][];
     reelAmount: number;
-    reelSet: any[];
+    reelSet: number[][];
+    initialReelSet: number[][];
+    startIndex: number;
     reelLength: number;
     symbolConfig: object[]} = {
     reelAmount: 5,
@@ -18,6 +20,7 @@ export const RendererConfig: {
     iterationTime: 280,
     animationTime: 5*280+280*0.5,
     winningCombination: [],
+    startIndex: 6,
     reelIndex: 0,
     symbolConfig: [
         {
@@ -59,6 +62,7 @@ export const RendererConfig: {
     ],
     /* Reel jest stackiem */
     reelSet: [],
+    initialReelSet: [],
     /* Masz reel set który renderuje sie od razu po odpaleniu gry
        masz zmienną reelIndex która mówi Ci na jakiej pozycji jesteś aktualnie reelsem, czyli pierwszy row od góry
        np. reelIndex = 25,
