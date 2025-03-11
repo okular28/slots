@@ -1,19 +1,19 @@
 import  { RendererConfig } from "../render/renderer.config.ts";
-import {drawCombination} from "./slotCombinations.ts";
-import {combinationVariationDrawer} from "./slotCombinations.ts";
+import {calculateWin, CroupierConfig} from "../render/croupier.ts";
 
 
 export function  insertLastCombination() {
-    RendererConfig.reelSet = RendererConfig.initialReelSet.map(inner => [...inner]);
-    // await drawCombination();
-        const insertIndex:number = RendererConfig.reelIndex+RendererConfig.startIndex;
-    RendererConfig.reelSet.forEach((reel, index:number):void=>{
+    RendererConfig.reelSet = RendererConfig.initialReelSet.map((inner:number[]) => [...inner]);
+    let insertIndex:number = RendererConfig.reelIndex+RendererConfig.startIndex;
+    if(RendererConfig.reelIndex+RendererConfig.startIndex > RendererConfig.reelLength){
+        insertIndex = 6;
+    }
+    RendererConfig.reelSet.forEach((reel:number[], index:number):void=>{
         const row:number[] = RendererConfig.winningCombination[index];
-        console.log('aaaaaaaaaaaaaaaaaaaa',RendererConfig.reelIndex,RendererConfig.startIndex, insertIndex);
             RendererConfig.reelSet[index].splice(insertIndex, 3, row[2], row[1], row[0]);
         });
-        // if(RendererConfig.reelSet == RendererConfig.initialReelSet){
-        //     console.log(true);
-        // }
         RendererConfig.winningCombination = [];
+        if(RendererConfig.winningSymbolPrice != 0){
+            calculateWin(RendererConfig.winningSymbolPrice, RendererConfig.winningCombinationMultiplier);
+        } else CroupierConfig.lastWin = 0;
     }

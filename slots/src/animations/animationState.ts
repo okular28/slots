@@ -4,20 +4,24 @@ import  { RendererConfig } from "../render/renderer.config.ts";
 import  { RendererObject } from "../render/renderer.config.ts";
 import {buttonBlock} from "./buttonBlock.ts";
 import {insertLastCombination} from "../slot/lastCombinationInserter.ts";
-import {slotCombinations} from "../slot/slotCombinations.ts";
+import {drawCombination} from "../slot/slotCombinations.ts";
+import {CroupierConfig, updateCurrentCash, updateListings} from "../render/croupier.ts";
 
 
 const element:HTMLButtonElement = RendererObject.button;
 let reelList:NodeListOf<HTMLElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
 export function animationStart():void {
-    element.addEventListener('click', onSpinButtonClick);
-    reelList = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
+    if(CroupierConfig.currentCash > 1000){
+        element.addEventListener('click', onSpinButtonClick);
+        reelList = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
+    } else alert("You ran out of money")
 }
 
 export function onSpinButtonClick():void {
+    updateCurrentCash(CroupierConfig.bid, true);
+    updateListings();
     buttonBlock(element, RendererConfig.animationTime);
-    slotCombinations();
-    insertLastCombination();
+    drawCombination();
     reelList.forEach((reel:HTMLElement, index:number):void => {
         let currentIteration:number = 1;
             const anim:Animation = reel.animate(

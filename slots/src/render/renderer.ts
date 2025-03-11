@@ -1,8 +1,9 @@
 import { RendererConfig } from "./renderer.config";
 import {animationStart} from "../animations/animationState.ts";
-let indexCounter = 0;
 
-const config = RendererConfig;
+let indexCounter:number = 0;
+const config:object = RendererConfig;
+
 export const renderReels = ():void => {
     const machineContainer: Element = document.getElementsByClassName('machineContainer')[0];
     for (let i: number = 0; i < config.reelAmount; i++) {
@@ -40,4 +41,3 @@ export const renderReelSteps = (reel, index):void => {
         config.reelIndex = 0;
     }
 }
-//3,4,5, 18,19,20
