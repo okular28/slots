@@ -8,7 +8,7 @@
     <title>Slots</title>
   </head>
   <body>
-    <div id="app">
+    <main id="app">
       <div class="wrapper">
         <div class="machineContainer"></div>
         <div class="borderWrapper">
@@ -17,12 +17,14 @@
           <div class="machineBorder"></div>
         </div>
       </div>
-      <button id="animationButton">Spin</button>
-      <div class="cashWrapper">
-        <span id="lastWin">Last spin winnings: 0 $</span>
-        <span id="currentCash">Your money: 25000 $</span>
+      <div class="uiWrapper">
+        <button id="animationButton">Spin</button>
+        <div class="cashWrapper">
+          <span id="lastWin">Last spin winnings: 0 $</span>
+          <span id="currentCash">Your money: 25000 $</span>
+        </div>
       </div>
-    </div>
+    </main>
     <script type="module" src="./src/main.ts"></script>
   </body>
 </html>

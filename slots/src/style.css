@@ -119,6 +119,11 @@ button:hover {
   z-index: -15;
 }
 
+.uiWrapper{
+  position: relative;
+  top: -380px;
+}
+
 .reel{
   width: var(--rowWidth);
   height: 900px;
