@@ -140,7 +140,6 @@ button:hover {
 }
 
 .row{
-  /*position: absolute;*/
   z-index: -1;
   display: flex;
   align-items: center;
@@ -168,7 +167,6 @@ button:hover {
 .machineBorder{
   z-index: 15;
   background-color: #242424;
-  /*opacity: 50%;*/
   height: calc(3*var(--rowHeight));
 }
 

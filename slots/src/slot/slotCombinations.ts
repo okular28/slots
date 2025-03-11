@@ -85,7 +85,6 @@ export function drawCombination():void{
     let singleReelSymbols:number[] = [];
     let singlePreviousReelArray:number[] | [] = [];
     const winningSymbol:number = getWinningSymbol(combination);
-    console.log(winningSymbol, placement, combination);
     for (let currentReel:number = 0; currentReel< RendererConfig.reelAmount; currentReel++){
     const ids:number[] = getFillers(combination, winningSymbol);
         for (let currentRow:number = 0; currentRow< 3; currentRow++) {
@@ -131,7 +130,6 @@ export function combinationVariationDrawer():number|null{
         case (result>=120):
             return 0;
         default:
-            console.log('none');
             return null;
     }
 }

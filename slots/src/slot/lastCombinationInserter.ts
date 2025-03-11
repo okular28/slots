@@ -2,7 +2,7 @@ import  { RendererConfig } from "../render/renderer.config.ts";
 import {calculateWin, CroupierConfig} from "../render/croupier.ts";
 
 
-export function  insertLastCombination() {
+export function  insertLastCombination():void {
     RendererConfig.reelSet = RendererConfig.initialReelSet.map((inner:number[]) => [...inner]);
     let insertIndex:number = RendererConfig.reelIndex+RendererConfig.startIndex;
     if(RendererConfig.reelIndex+RendererConfig.startIndex > RendererConfig.reelLength){

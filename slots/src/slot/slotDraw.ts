@@ -1,18 +1,19 @@
 import { shuffle } from './arrayShuffle.ts'
+import {RendererConfig} from "../render/renderer.config.ts";
 export function slotDrawer():void {
     /*
-    * Symbol - Price - Value
-    * Diamond - 25k - 2
-    * Emerald - 20k - 4
-    * Alexandrite - 15k - 8
-    * Rubin - 10k - 16
-    * Opal - 5k - 32
-    * Sapphire - 3k - 64
-    * Tanzanite - 1k - 128
-    * Topaz - 0.5k - 256
-    * Amethyst - 0.1k - 512
+    * Symbol - Price
+    * Diamond - 25k
+    * Emerald - 20k
+    * Alexandrite - 15k
+    * Rubin - 10k
+    * Opal - 5k
+    * Sapphire - 3k
+    * Tanzanite - 1k
+    * Topaz - 0.5k
+    * Amethyst - 0.1k
     */
-    const symbols: string[] = ['Rubin', 'Emerald','Alexandrite','Diamond','Opal','Sapphire','Tanzanite','Topaz','Amethyst'];
+    const symbols: string[] = RendererConfig.symbolConfig.map((item:object) => item.name);
     const reelList:NodeListOf<HTMLElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
     reelList.forEach((reel:HTMLElement):void => {
         const shuffledArray:string[] = shuffle(symbols);

@@ -20,7 +20,6 @@ export function updateCurrentCash(amount, subtract):void{
     }else{
         CroupierConfig.currentCash+=amount;
     }
-    console.log(CroupierConfig.currentCash);
 }
 
 export  function updateListings():void{

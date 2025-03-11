@@ -4,7 +4,7 @@ import {updateListings} from "../render/croupier.ts";
 
 export function winAnimation():void{
     let symbol:NodeListOf<HTMLElement> = document.querySelectorAll(`.${RendererConfig.winningSymbol}`) as NodeListOf<HTMLElement>;
-    symbol.forEach((reel:HTMLElement, index:number):void => {
+    symbol.forEach((reel:HTMLElement):void => {
         const anim:Animation = reel.animate(
             [
                 { backgroundColor: "#cefff5"},

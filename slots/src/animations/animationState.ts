@@ -1,9 +1,7 @@
-import { slotDrawer } from '../slot/slotDraw.ts'
 import {renderReelSteps} from "../render/renderer.ts";
 import  { RendererConfig } from "../render/renderer.config.ts";
 import  { RendererObject } from "../render/renderer.config.ts";
 import {buttonBlock} from "./buttonBlock.ts";
-import {insertLastCombination} from "../slot/lastCombinationInserter.ts";
 import {drawCombination} from "../slot/slotCombinations.ts";
 import {CroupierConfig, updateCurrentCash, updateListings} from "../render/croupier.ts";
 
