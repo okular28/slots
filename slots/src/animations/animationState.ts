@@ -7,13 +7,13 @@ import { CroupierConfig, updateCurrentCash, updateListings } from "../render/cro
 
 
 const element: HTMLButtonElement = RendererObject.button;
-let reelList: NodeListOf<HTMLElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
+let reelList: NodeListOf<HTMLDivElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLDivElement>;
 
 export function animationStart(): void {
     if (CroupierConfig.currentCash > 1000) {
         element.addEventListener('click', onSpinButtonClick);
 
-        reelList = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
+        reelList = document.querySelectorAll(".reel") as NodeListOf<HTMLDivElement>;
     } else {
         alert("You ran out of money")
     }
@@ -25,7 +25,7 @@ export function onSpinButtonClick(): void {
     buttonBlock(element, RendererConfig.animationTime);
     drawCombination();
 
-    reelList.forEach((reel: HTMLElement, index: number): void => {
+    reelList.forEach((reel: HTMLDivElement, index: number): void => {
         let currentIteration: number = 1;
 
         const anim: Animation = reel.animate(
@@ -47,7 +47,9 @@ export function onSpinButtonClick(): void {
             renderReelSteps(reel, index)
             if (currentIteration < RendererConfig.iterationCount) {
                 if (currentIteration == 2) {
-                    anim.effect.updateTiming({ delay: 0 });
+                    if(anim.effect != null){
+                        anim.effect.updateTiming({ delay: 0 });
+                    }
                 }
 
                 anim.play();

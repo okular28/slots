@@ -1,7 +1,7 @@
-import { RendererConfig } from "./renderer.config";
+import { SymbolConfigItem, IRendererConfig, RendererConfig } from "./renderer.config.ts";
 import { animationStart } from "../animations/animationState.ts";
 
-const config: object = RendererConfig;
+const config: IRendererConfig = RendererConfig;
 let indexCounter: number = 0;
 
 export const renderReels = (): void => {
@@ -25,7 +25,7 @@ export const renderReels = (): void => {
 
     animationStart();
 }
-export const renderReelSteps = (reel, index): void => {
+export const renderReelSteps = (reel: HTMLDivElement , index: number): void => {
     indexCounter++;
 
     if (config.reelIndex + 3 < config.reelLength) {
@@ -36,13 +36,16 @@ export const renderReelSteps = (reel, index): void => {
 
             row.classList.add('row');
 
-            const symbolObject: object = config.symbolConfig.find((item: object): boolean => item.id === config.reelSet[index][config.reelIndex + reelIndexAdder]);
+            const symbolObject: SymbolConfigItem | undefined = config.symbolConfig.find((item: SymbolConfigItem): boolean => item.id === config.reelSet[index][config.reelIndex + reelIndexAdder]);
 
             if (symbolObject && !row.classList.contains(symbolObject.name)) {
                 row.classList.add(symbolObject.name);
             }
 
-            reel.removeChild(reel.lastChild);
+            if (reel.lastChild) {
+                reel.removeChild(reel.lastChild);
+            }
+
             reel.insertBefore(row, reel.firstChild);
             reelIndexAdder++;
         }

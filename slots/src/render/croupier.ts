@@ -6,7 +6,7 @@ export const CroupierConfig: { currentCash: number, bid: number, lastWin: number
     lastWin: 0
 }
 
-export function calculateWin(symbolValue, multiplier): void {
+export function calculateWin(symbolValue: number, multiplier: number): void {
     const winValue: number = parseFloat((symbolValue * multiplier).toFixed(2));
 
     updateCurrentCash(winValue, false)
@@ -17,8 +17,8 @@ export function calculateWin(symbolValue, multiplier): void {
     RendererConfig.winningCombinationMultiplier = 1;
 }
 
-export function updateCurrentCash(amount, subtract): void {
-    if (subtract === true) {
+export function updateCurrentCash(amount: number, subtract: boolean): void {
+    if (subtract) {
         CroupierConfig.currentCash -= amount
     } else {
         CroupierConfig.currentCash += amount;

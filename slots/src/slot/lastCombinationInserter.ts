@@ -11,7 +11,7 @@ export function insertLastCombination(): void {
         insertIndex = 6;
     }
 
-    RendererConfig.reelSet.forEach((reel: number[], index: number): void => {
+    RendererConfig.reelSet.forEach((_, index: number): void => {
         const row: number[] = RendererConfig.winningCombination[index];
         RendererConfig.reelSet[index].splice(insertIndex, 3, row[2], row[1], row[0]);
     });

@@ -1,3 +1,26 @@
+export interface SymbolConfigItem {
+    id: number;
+    name: string;
+    price: number;
+}
+
+export interface IRendererConfig {
+    reelAmount: number;
+    symbolAmount: number;
+    reelIndex: number;
+    reelLength: number;
+    symbolConfig: SymbolConfigItem[];
+    reelSet: number[][];
+    initialReelSet?: number[][];
+    startIndex: number;
+    winningCombination?: number[][];
+    iterationTime: number;
+    animationTime: number;
+    iterationCount: number;
+    winningSymbolPrice: number;
+    winningCombinationMultiplier: number;
+}
+
 export const RendererConfig: {
     symbolAmount: number;
     animationTime: number;
@@ -14,7 +37,7 @@ export const RendererConfig: {
     winningCombinationMultiplier: number;
     startIndex: number;
     reelLength: number;
-    symbolConfig: object[]
+    symbolConfig: SymbolConfigItem[]
 } = {
     reelAmount: 5,
     symbolAmount: 9,

@@ -1,5 +1,5 @@
 import { shuffle } from './arrayShuffle.ts'
-import { RendererConfig } from "../render/renderer.config.ts";
+import { RendererConfig, SymbolConfigItem } from "../render/renderer.config.ts";
 
 /*
     * Symbol - Price
@@ -15,7 +15,7 @@ import { RendererConfig } from "../render/renderer.config.ts";
 */
 
 export function slotDrawer(): void {
-    const symbols: string[] = RendererConfig.symbolConfig.map((item: object) => item.name);
+    const symbols: string[] = RendererConfig.symbolConfig.map((item: SymbolConfigItem) => item.name);
     const reelList: NodeListOf<HTMLElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
 
     reelList.forEach((reel: HTMLElement): void => {

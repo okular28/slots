@@ -1,6 +1,13 @@
 import { RendererConfig } from "../render/renderer.config.ts";
 import { insertLastCombination } from "./lastCombinationInserter.ts";
 
+interface CombinationConfigItem {
+    id: number;
+    maxStartingPointX: number;
+    maxStartingPointY: number;
+    multiplier: number;
+}
+
 const combinations: number[][] = [
     [0, 0, 0],//line 3x
     [0, 0, 0, 0],// line 4x
@@ -13,7 +20,7 @@ const combinations: number[][] = [
     [2, 1, 0, 1, 2],//V-flipped
 ]
 
-const combinationsConfig: object[] = [
+const combinationsConfig: CombinationConfigItem[] = [
     {
         //line 3x
         id: 0,
@@ -80,7 +87,7 @@ const combinationsConfig: object[] = [
 ]
 
 export function drawCombination(): void {
-    const combination: number | null = combinationVariationDrawer();
+    const combination: number = combinationVariationDrawer();
     const placement: number[] | [] = combinationPlacement(combination);
     const winningSymbol: number = getWinningSymbol(combination);
 
@@ -100,7 +107,7 @@ export function drawCombination(): void {
             singleReelSymbols.push(ids[chosenSymbol]);
             ids.splice(chosenSymbol, 1);
 
-            if (combination != null) {
+            if (combination != -1) {
                 alterWinningCombination(winningSymbol, currentReel, currentRow, placement, combination, singleReelSymbols);
             }
         }
@@ -110,7 +117,7 @@ export function drawCombination(): void {
         singleReelSymbols = [];
     }
 
-    if (combination != null) {
+    if (combination != -1) {
         RendererConfig.winningSymbolPrice = RendererConfig.symbolConfig[winningSymbol].price;
         RendererConfig.winningCombinationMultiplier = combinationsConfig[combination].multiplier;
     }
@@ -118,7 +125,7 @@ export function drawCombination(): void {
     insertLastCombination();
 }
 
-export function combinationVariationDrawer(): number | null {
+export function combinationVariationDrawer(): number {
     const result: number = Math.floor(Math.random() * 231);
 
     switch (true) {
@@ -141,14 +148,14 @@ export function combinationVariationDrawer(): number | null {
         case (result >= 120):
             return 0;
         default:
-            return null;
+            return -1;
     }
 }
 
-function getWinningSymbol(combination) {
+function getWinningSymbol(combination: number) {
     const win: number = Math.floor(Math.random() * RendererConfig.symbolAmount);
 
-    if (combination != null) {
+    if (combination != -1) {
         RendererConfig.winningSymbol = RendererConfig.symbolConfig[win].name;
     } else {
         RendererConfig.winningSymbol = 'none';
@@ -157,7 +164,7 @@ function getWinningSymbol(combination) {
     return win;
 }
 
-export function combinationPlacement(combinationId): any[] {
+export function combinationPlacement(combinationId: number): any[] {
     if (combinationId == null) {
         return [];
     }
@@ -182,13 +189,13 @@ export function combinationPlacement(combinationId): any[] {
     return [posX, posY];
 }
 
-export function getFillers(combination, winningSymbol): number[] | [] {
-    if (combination != null) {
+export function getFillers(combination: number, winningSymbol: number): number[] {
+    if (combination != -1) {
         return RendererConfig
-            .symbolConfig.map((item: object) => item.id)
+            .symbolConfig.map((item) => item.id)
             .filter(id => id !== winningSymbol);
     } else {
-        return RendererConfig.symbolConfig.map((item: object) => item.id);
+        return RendererConfig.symbolConfig.map((item) => item.id);
     }
 }
 
