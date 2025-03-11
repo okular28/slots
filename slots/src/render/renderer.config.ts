@@ -14,14 +14,15 @@ export const RendererConfig: {
     winningCombinationMultiplier: number;
     startIndex: number;
     reelLength: number;
-    symbolConfig: object[]} = {
+    symbolConfig: object[]
+} = {
     reelAmount: 5,
     symbolAmount: 9,
     iterationCount: 5,
     reelLength: 50,
     symbolHeight: 180,
     iterationTime: 280,
-    animationTime: 5*280+280*0.5,
+    animationTime: 5 * 280 + 280 * 0.5,
     winningSymbol: '',
     winningSymbolPrice: 0,
     winningCombination: [],
@@ -79,7 +80,7 @@ export const RendererConfig: {
     initialReelSet: [],
 }
 
-export const RendererObject:{button:HTMLButtonElement, cashSpan, winSpan} = {
+export const RendererObject: { button: HTMLButtonElement, cashSpan: HTMLSpanElement, winSpan: HTMLSpanElement } = {
     button: document.getElementById("animationButton") as HTMLButtonElement,
     cashSpan: document.getElementById("currentCash") as HTMLSpanElement,
     winSpan: document.getElementById("lastWin") as HTMLSpanElement,
