@@ -1,38 +1,60 @@
-import { RendererConfig } from "./renderer.config";
-import {animationStart} from "../animations/animationState.ts";
-let indexCounter = 0;
+import { SymbolConfigItem, IRendererConfig, RendererConfig } from "./renderer.config.ts";
+import { animationStart } from "../animations/animationState.ts";
 
-const config = RendererConfig;
-export const renderReels = ():void => {
+const config: IRendererConfig = RendererConfig;
+let indexCounter: number = 0;
+
+export const renderReels = (): void => {
     const machineContainer: Element = document.getElementsByClassName('machineContainer')[0];
-    for (let i: number = 0; i < config.reelAmount; i++) {
+
+    for ( let i: number = 0; i < config.reelAmount; i++ ) {
         const reel: HTMLDivElement = document.createElement('div');
+
         reel.classList.add('reel');
 
-        for (let i: number = 0; i < config.symbolAmount; i++) {
+        for ( let i: number = 0; i < config.symbolAmount; i++ ) {
             const row: HTMLDivElement = document.createElement('div');
+
             row.classList.add('row');
+
             reel.appendChild(row);
         }
+
         machineContainer.appendChild(reel);
     }
+
     animationStart();
 }
-export const renderReelSteps = (reel, index):void => {
+export const renderReelSteps = (reel: HTMLDivElement , index: number): void => {
     indexCounter++;
-    if(config.reelIndex+3<config.reelLength){
-        let reelIndexAdder:number = 0;
-        for (let j: number = 0; j < config.symbolAmount/3; j++) {
+
+    if (config.reelIndex + 3 < config.reelLength) {
+        let reelIndexAdder: number = 0;
+
+        for ( let j: number = 0; j < config.symbolAmount / 3; j++ ) {
             const row: HTMLDivElement = document.createElement('div');
+
             row.classList.add('row');
-            row.textContent = config.reelSet[index][config.reelIndex+reelIndexAdder];
-            reel.removeChild(reel.lastChild);
+
+            const symbolObject: SymbolConfigItem | undefined = config.symbolConfig.find((item: SymbolConfigItem): boolean => item.id === config.reelSet[index][config.reelIndex + reelIndexAdder]);
+
+            if (symbolObject && !row.classList.contains(symbolObject.name)) {
+                row.classList.add(symbolObject.name);
+            }
+
+            if (reel.lastChild) {
+                reel.removeChild(reel.lastChild);
+            }
+
             reel.insertBefore(row, reel.firstChild);
             reelIndexAdder++;
         }
-        if(indexCounter%5==0){
-            config.reelIndex=config.reelIndex+3;
+
+        if (indexCounter % 5 == 0) {
+            config.reelIndex = config.reelIndex + 3;
         }
-    } else config.reelIndex = 0;
+
+    } else {
+        config.reelIndex = 0;
+    }
 }
-//3,4,5, 18,19,20

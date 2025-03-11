@@ -1,135 +1,184 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  /*VARIABLES FOR SLOT ANIMATION*/
-  --animationTime: 900ms;
-  --animationIterations: infinite;
-  --animationDelay: calc(var(--animationTime) / 9);
-  --totalAnimationTime: calc(var(--animationIterations)*var(--animationTime));
-  --singlerowStep: calc(var(--animationTime)/9);
+    /*VARIABLES FOR SLOT ANIMATION*/
+    --animationTime: 900ms;
+    --animationIterations: infinite;
+    --animationDelay: calc(var(--animationTime) / 9);
+    --totalAnimationTime: calc(var(--animationIterations) * var(--animationTime));
+    --singlerowStep: calc(var(--animationTime) / 9);
 
-  /*VARIABLES FOR ROWS*/
-  --rowHeight: 100px;
-  --rowWidth: 100px;
+    /*VARIABLES FOR ROWS*/
+    --rowHeight: 100px;
+    --rowWidth: 100px;
 }
 
-*{
-  box-sizing: border-box;
-  overflow: hidden;
+* {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.Diamond {
+    background-image: url("./images/diamond.png") !important;
+}
+
+.Rubin {
+    background-image: url("./images/rubin.png") !important;
+}
+
+.Emerald {
+    background-image: url("./images/emerald.png") !important;
+}
+
+.Alexandrite {
+    background-image: url("./images/alexandrite.png") !important;
+}
+
+.Opal {
+    background-image: url("./images/opal.png") !important;
+}
+
+.Sapphire {
+    background-image: url("./images/sapphire.png") !important;
+}
+
+.Tanzanite {
+    background-image: url("./images/tanzanite.png") !important
+}
+
+.Topaz {
+    background-image: url("./images/topaz.png") !important;
+}
+
+.Amethyst {
+    background-image: url("./images/amethyst.png") !important;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+    font-size: 3.2em;
+    line-height: 1.1;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+    border-color: #646cff;
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+
+    a:hover {
+        color: #747bff;
+    }
+
+    button {
+        background-color: #f9f9f9;
+    }
 }
 
-.machineContainer{
-  display: flex;
-  position: absolute;
-  z-index: -15;
+.machineContainer {
+    display: flex;
+    position: absolute;
+    z-index: -15;
 }
 
-.reel{
-  width: var(--rowWidth);
-  height: 900px;
+.uiWrapper {
+    position: relative;
+    top: -380px;
 }
 
-.row{
-  width: var(--rowWidth);
-  height: var(--rowHeight);
+.reel {
+    width: var(--rowWidth);
+    height: 900px;
+    position: relative;
 }
+
+.row {
+    width: var(--rowWidth);
+    height: var(--rowHeight);
+}
+
 .machineBorder {
-  width: calc(5*var(--rowWidth));
-  height: calc(3*var(--rowHeight));
-  color: #1a1a1a;
+    width: calc(5 * var(--rowWidth));
+    height: calc(3 * var(--rowHeight));
+    color: #1a1a1a;
 }
 
-#animationButton{
-  z-index: 40;
+#animationButton {
+    z-index: 40;
 }
 
-.row{
-  /*position: absolute;*/
-  z-index: -1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f2a4f0;
-  border: 7px groove #f2a4f0;
-  background: #cefff5;
-  border-collapse: collapse;
+.row {
+    z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f2a4f0;
+    border: 7px groove #f2a4f0;
+    background-color: #cefff5;
+    border-collapse: collapse;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 
-.reel{
-  position: relative;
+.cashWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.filler{
-  width: calc(5*var(--rowWidth));
-  height: calc(3*var(--rowHeight));
+.filler {
+    width: calc(5 * var(--rowWidth));
+    height: calc(3 * var(--rowHeight));
 }
 
-.machineBorder{
-  z-index: 15;
-  background-color: #242424;
-  /*opacity: 50%;*/
-  height: calc(3*var(--rowHeight));
+.machineBorder {
+    z-index: 15;
+    background-color: #242424;
+    height: calc(3 * var(--rowHeight));
 }
 
 .machineBorder:last-child {
-  height: calc(4*var(--rowHeight));
+    height: calc(4 * var(--rowHeight));
 }

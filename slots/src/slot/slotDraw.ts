@@ -1,24 +1,29 @@
 import { shuffle } from './arrayShuffle.ts'
-export function slotDrawer():void {
-    /*
-    * Symbol - Price - Value
-    * Diamond - 25k - 2
-    * Emerald - 20k - 4
-    * Alexandrite - 15k - 8
-    * Rubin - 10k - 16
-    * Opal - 5k - 32
-    * Sapphire - 3k - 64
-    * Tanzanite - 1k - 128
-    * Topaz - 0.5k - 256
-    * Amethyst - 0.1k - 512
-    */
-    const symbols: string[] = ['Rubin', 'Emerald','Alexandrite','Diamond','Opal','Sapphire','Tanzanite','Topaz','Amethyst'];
-    const reelList:NodeListOf<HTMLElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
-    reelList.forEach((reel:HTMLElement):void => {
-        const shuffledArray:string[] = shuffle(symbols);
-        const rowList:NodeListOf<HTMLElement> = reel.querySelectorAll(".row") as NodeListOf<HTMLElement>;
-        rowList.forEach((row:HTMLElement, index:number):void =>{
-            row.textContent = shuffledArray[index];
-        })
+import { RendererConfig, SymbolConfigItem } from "../render/renderer.config.ts";
+
+/*
+    * Symbol - Price
+    * Diamond - 25k
+    * Emerald - 20k
+    * Alexandrite - 15k
+    * Rubin - 10k
+    * Opal - 5k
+    * Sapphire - 3k
+    * Tanzanite - 1k
+    * Topaz - 0.5k
+    * Amethyst - 0.1k
+*/
+
+export function slotDrawer(): void {
+    const symbols: string[] = RendererConfig.symbolConfig.map((item: SymbolConfigItem) => item.name);
+    const reelList: NodeListOf<HTMLElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLElement>;
+
+    reelList.forEach((reel: HTMLElement): void => {
+        const shuffledArray: string[] = shuffle(symbols);
+        const rowList: NodeListOf<HTMLElement> = reel.querySelectorAll(".row") as NodeListOf<HTMLElement>;
+
+        rowList.forEach((row: HTMLElement, index: number): void => {
+            row.classList.add(shuffledArray[index]);
         });
+    });
 }
