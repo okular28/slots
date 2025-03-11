@@ -11,9 +11,9 @@ export interface IRendererConfig {
     reelLength: number;
     symbolConfig: SymbolConfigItem[];
     reelSet: number[][];
-    initialReelSet?: number[][];
+    initialReelSet: number[][];
     startIndex: number;
-    winningCombination?: number[][];
+    winningCombination: number[][];
     iterationTime: number;
     animationTime: number;
     iterationCount: number;

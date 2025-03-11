@@ -165,7 +165,7 @@ function getWinningSymbol(combination: number) {
 }
 
 export function combinationPlacement(combinationId: number): any[] {
-    if (combinationId == null) {
+    if (combinationId == -1) {
         return [];
     }
 
