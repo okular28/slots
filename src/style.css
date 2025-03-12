@@ -22,6 +22,8 @@
     /*VARIABLES FOR ROWS*/
     --rowHeight: 100px;
     --rowWidth: 100px;
+    --rowWidthMobile: 50px;
+    --rowHeightMobile: 50px;
 }
 
 * {
@@ -81,7 +83,6 @@ h1 {
 #app {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem;
     text-align: center;
 }
 
@@ -129,13 +130,8 @@ button:hover {
 
 .reel {
     width: var(--rowWidth);
-    height: 900px;
+    height: calc(var(--rowHeight) * 9);
     position: relative;
-}
-
-.row {
-    width: var(--rowWidth);
-    height: var(--rowHeight);
 }
 
 .machineBorder {
@@ -149,6 +145,8 @@ button:hover {
 }
 
 .row {
+    width: var(--rowWidth);
+    height: var(--rowHeight);
     z-index: -1;
     display: flex;
     align-items: center;
@@ -162,6 +160,10 @@ button:hover {
     background-size: contain;
 }
 
+.machineContainer {
+    margin: 0 1px;
+}
+
 .cashWrapper {
     display: flex;
     flex-direction: column;
@@ -173,12 +175,58 @@ button:hover {
     height: calc(3 * var(--rowHeight));
 }
 
+.wrapper {
+    margin: 0 auto;
+    width: 510px;
+}
+
 .machineBorder {
     z-index: 15;
     background-color: #242424;
     height: calc(3 * var(--rowHeight));
+    width: calc(5 * var(--rowWidth) + 10);
 }
 
 .machineBorder:last-child {
     height: calc(4 * var(--rowHeight));
+}
+
+@media screen and (max-width: 600px) {
+    .reel {
+        width: var(--rowWidthMobile);
+        height: calc(var(--rowHeightMobile) * 9);
+    }
+
+    #app {
+        max-width: 600px;
+    }
+
+    .wrapper {
+        margin: 0 auto;
+        width: 255px;
+    }
+
+    .row {
+        width: var(--rowWidthMobile);
+        height: var(--rowHeightMobile);
+        border-width: 3px;
+    }
+
+    .filler {
+        width: calc(5 * var(--rowWidthMobile));
+        height: calc(3 * var(--rowHeightMobile));
+    }
+
+    .machineBorder {
+        height: calc(3 * var(--rowHeightMobile));
+        width: calc(5 * var(--rowWidthMobile) + 10);
+    }
+
+    .machineBorder:last-child {
+        height: calc(4 * var(--rowHeightMobile));
+    }
+
+    .uiWrapper {
+        top: -120px;
+    }
 }

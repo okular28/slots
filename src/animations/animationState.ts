@@ -5,9 +5,9 @@ import { buttonBlock } from "./buttonBlock.ts";
 import { drawCombination } from "../slot/slotCombinations.ts";
 import { CroupierConfig, updateCurrentCash, updateListings } from "../render/croupier.ts";
 
-
 const element: HTMLButtonElement = RendererObject.button;
 let reelList: NodeListOf<HTMLDivElement> = document.querySelectorAll(".reel") as NodeListOf<HTMLDivElement>;
+let reelHeight: number;
 
 export function animationStart(): void {
     if (CroupierConfig.currentCash > 1000) {
@@ -25,13 +25,21 @@ export function onSpinButtonClick(): void {
     buttonBlock(element, RendererConfig.animationTime);
     drawCombination();
 
+    const screenWidth: number = window.screen.width;
+
+    if (screenWidth < 600) {
+        reelHeight = 150;
+    } else {
+        reelHeight = 300;
+    }
+
     reelList.forEach((reel: HTMLDivElement, index: number): void => {
         let currentIteration: number = 1;
 
         const anim: Animation = reel.animate(
             [
-                { top: "0px" },
-                { top: `300px`}
+                {top: `0px`},
+                {top: `${ reelHeight }px`}
             ],
             {
                 delay: index * 30,
@@ -47,8 +55,8 @@ export function onSpinButtonClick(): void {
             renderReelSteps(reel, index)
             if (currentIteration < RendererConfig.iterationCount) {
                 if (currentIteration == 2) {
-                    if(anim.effect != null){
-                        anim.effect.updateTiming({ delay: 0 });
+                    if (anim.effect != null) {
+                        anim.effect.updateTiming({delay: 0});
                     }
                 }
 

@@ -5,6 +5,10 @@ import { updateListings } from "../render/croupier.ts";
 export function winAnimation(): void {
     let symbol: NodeListOf<HTMLElement> = document.querySelectorAll(`.${ RendererConfig.winningSymbol }`) as NodeListOf<HTMLElement>;
 
+    if (RendererConfig.winningSymbol != 'none') {
+        buttonBlockWinAnimation(RendererObject.button, 1300);
+    }
+
     symbol.forEach((reel: HTMLElement): void => {
         const anim: Animation = reel.animate(
             [
@@ -21,8 +25,6 @@ export function winAnimation(): void {
         );
 
         anim.play();
-
-        buttonBlockWinAnimation(RendererObject.button, 1000);
     })
 
     updateListings();
